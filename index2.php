@@ -149,7 +149,7 @@
                     <div class="col-lg-6" data-aos="fade">
                         <div class="card shadow">
                             <div class="card-body">
-                                <h3 class="card-title text-center mb-4">Login Masyarakat</h3>
+                                <h3 class="card-title text-center mb-4">Login Petugas/admin</h3>
                                 <hr>
                                 <form class="user" method="post" action="cek_login2.php">
                                     <div class="form-group">

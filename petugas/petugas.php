@@ -71,7 +71,7 @@ if($_SESSION['level'] != "petugas") {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>APPEM MASYARAKAT</title>
+    <title>APPEM </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -199,15 +199,16 @@ if($_SESSION['level'] != "petugas") {
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12 d-flex align-items-center">
-                                <h1 class="page-title">Aplikasi Pengaduan Masyarakat</h1>
+                                <h1 class="page-title">Appem</h1>
                             </div>
                         </div>
                     </div>
 
-
-
-
-
+                    <!-- Tombol chat hanya dengan ikon -->
+                    <button type="button" class="btn" onclick="window.open('/appem/chart/login.php', '_blank');"
+                        style="background: none; border: none;">
+                        <i class="fas fa-comment" style="font-size: 18px; color: blue;"></i>
+                    </button>
 
 
                     <!-- Tombol untuk menampilkan modal identitas -->
@@ -261,31 +262,22 @@ if($_SESSION['level'] != "petugas") {
 
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white" style="position: relative;">
-                <div class="container my-auto">
-                    <div id="chatbox"
-                        style="height: 200px; overflow-y: scroll; position: absolute; bottom: 50px; right: 20px;"></div>
-                    <!-- Tombol Live Chat -->
 
-
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; ikhlas bahrudin</span>
-                    </div>
-
-                    <a href="/appem/chart/login.php" target="_blank"
-                        class="btn btn-primary rounded-circle live-chat-button"
-                        style="position: fixed; bottom: 20px; right: 20px;">
-                        <i class="fas fa-envelope"></i> <!-- Gunakan ikon pesan Font Awesome yang sesuai -->
-                    </a>
-                    </nav>
-
-            </footer>
-
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" style="position: relative;">
+
+
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; ikhlas bahrudin</span>
+            </div>
+
+        </footer>
+
+        <!-- End of Footer -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -304,26 +296,7 @@ if($_SESSION['level'] != "petugas") {
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-    <script>
-    function updateMessageNotification() {
-        // Buat permintaan Ajax untuk mendapatkan jumlah pesan yang belum dibaca
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Perbarui notifikasi dengan jumlah pesan yang belum dibaca
-                document.getElementById("messageNotification").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "get_unread_messages.php", true);
-        xhttp.send();
-    }
 
-    // Panggil fungsi untuk pertama kali saat halaman dimuat
-    updateMessageNotification();
-
-    // Perbarui notifikasi setiap 5 detik
-    setInterval(updateMessageNotification, 5000);
-    </script>
 
 </body>
 

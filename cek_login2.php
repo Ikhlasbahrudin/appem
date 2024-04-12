@@ -112,16 +112,150 @@ if ($cek > 0) //jika ketemu
         $_SESSION['user'] = $user;
         $_SESSION['nama'] = $data['nama_petugas'];
         $_SESSION['level'] = $data['level'];
-        header('location:admin/admin.php'); // Hapus slash di depan admin.php
-        exit(); // Tambahkan exit setelah header
+        echo "
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Success</title>
+            <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'>
+            <link rel='icon' type='image/png' href='logo/logo.png' >
+            <style>
+                /* Style tambahan jika diperlukan */
+                .alert-box {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: pulse 1s infinite;
+                    background-color: #d4edda;
+                    color: #155724;
+                    border-color: #c3e6cb;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+                .success-text {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                    color: #155724;
+                    font-weight: bold;
+                }
+                .message-text {
+                    font-size: 18px;
+                    color: #155724;
+                }
+                @keyframes pulse {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                    50% {
+                        transform: translate(-50%, -50%) scale(1.05);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='alert alert-success alert-dismissible fade show alert-box' role='alert'>
+                    <div class='success-text'>Success </div>
+                    <div class='message-text'>Login Successful. Redirecting...</div>
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+            </div>
+            <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
+            <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js'></script>
+            <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+            <script>
+                setTimeout(function() {
+                    window.location.href = 'admin/admin.php'; // Redirect ke halaman admin setelah 3 detik
+                }, 3000);
+            </script>
+        </body>
+        </html>
+        ";
+        exit(); // Hentikan eksekusi skrip
     }
-    else if ($data['level'] == "petugas") // Perbaiki kesalahan penulisan sintaks
+    else if ($data['level'] == "petugas")
     {
         $_SESSION['user'] = $user;
         $_SESSION['nama'] = $data['nama_petugas'];
         $_SESSION['level'] = $data['level'];
-        header('location:petugas/petugas.php'); 
-        exit(); // Tambahkan exit setelah header
+        echo "
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Success</title>
+            <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'>
+            <link rel='icon' type='image/png' href='logo/logo.png' >
+            <style>
+                /* Style tambahan jika diperlukan */
+                .alert-box {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: pulse 1s infinite;
+                    background-color: #d4edda;
+                    color: #155724;
+                    border-color: #c3e6cb;
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+                .success-text {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                    color: #155724;
+                    font-weight: bold;
+                }
+                .message-text {
+                    font-size: 18px;
+                    color: #155724;
+                }
+                @keyframes pulse {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                    50% {
+                        transform: translate(-50%, -50%) scale(1.05);
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='alert alert-success alert-dismissible fade show alert-box' role='alert'>
+                    <div class='success-text'>Success </div>
+                    <div class='message-text'>Login Successful. Redirecting...</div>
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+            </div>
+            <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
+            <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js'></script>
+            <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+            <script>
+                setTimeout(function() {
+                    window.location.href = 'petugas/petugas.php'; // Redirect ke halaman petugas setelah 3 detik
+                }, 3000);
+            </script>
+        </body>
+        </html>
+        ";
+        exit(); // Hentikan eksekusi skrip
     }
 }
 else
@@ -189,7 +323,6 @@ else
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <a href="index2.php" class=""></a>
     </div>
     <!-- Panggil Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -14,6 +14,7 @@ if(!isset($_SESSION['nama'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Anda belum login</title>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -58,6 +59,8 @@ if(!isset($_SESSION['nama'])) {
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="logo/logo.png" rel="icon">
     <style>
     @media (max-width: 768px) {
         .page-title {
@@ -108,14 +111,17 @@ if(!isset($_SESSION['nama'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="tulis_pengaduan.php">
+                <a class="nav-link tulis-pengaduan-link" href="tulis_pengaduan.php">
                     <i class="fas fa-fw fa-edit"></i>
-                    <span>Tulis Pengaduan</span></a>
+                    <span>Tulis Pengaduan</span>
+                </a>
             </li>
+
+
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="lihat_pengaduan.php">
+                <a class="nav-link lihat-pengaduan" href="lihat_pengaduan.php">
                     <i class="fas fa-fw fa-eye"></i>
                     <span>Lihat Pengaduan</span></a>
             </li>
@@ -151,10 +157,18 @@ if(!isset($_SESSION['nama'])) {
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12 d-flex align-items-center">
-                                <h1 class="page-title">Aplikasi Pengaduan Masyarakat</h1>
+                                <h1 class="page-title">Appem</h1>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Tombol chat hanya dengan ikon -->
+                    <button type="button" class="btn" onclick="window.open('/appem/chart/login.php', '_blank');"
+                        style="background: none; border: none;">
+                        <i class="fas fa-comment" style="font-size: 18px; color: blue;"></i>
+                    </button>
+
+
 
 
                     <!-- Tombol untuk menampilkan modal identitas -->
@@ -173,12 +187,15 @@ if(!isset($_SESSION['nama'])) {
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
+
                                 </div>
+
                                 <div class="modal-body">
                                     <!-- Tempat menampilkan identitas -->
                                     <p>Nama Pengguna: <span id="username" class="font-weight-bold"></span></p>
                                     <p>NIK: <span id="level" class="font-weight-bold"></span></p>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -207,24 +224,17 @@ if(!isset($_SESSION['nama'])) {
             </div>
 
             <!-- End of Main Content -->
-            <!-- Elemen untuk menampilkan live chat -->
+
 
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white" style="position: relative;">
-                <div class="container my-auto">
-                    <div id="chatbox"
-                        style="height: 200px; overflow-y: scroll; position: absolute; bottom: 50px; right: 20px;"></div>
-                    <a href="/appem/chart/login.php" target="_blank"
-                        class="btn btn-primary rounded-circle live-chat-button"
-                        style="position: fixed; bottom: 20px; right: 20px;">
-                        <i class="fas fa-envelope"></i> <!-- Gunakan ikon pesan Font Awesome yang sesuai -->
-                    </a>
 
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; ikhlas bahrudin</span>
-                    </div>
+
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; ikhlas bahrudin</span>
                 </div>
+
             </footer>
 
 
@@ -253,6 +263,47 @@ if(!isset($_SESSION['nama'])) {
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+    function showLoading() {
+        // Tambahkan loading
+        var loadingOverlay = document.createElement('div');
+        loadingOverlay.style.position = 'fixed';
+        loadingOverlay.style.top = '0';
+        loadingOverlay.style.left = '0';
+        loadingOverlay.style.width = '100%';
+        loadingOverlay.style.height = '100%';
+        loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        loadingOverlay.style.zIndex = '9999';
+
+        var loadingIcon = document.createElement('i');
+        loadingIcon.classList.add('fas', 'fa-spinner', 'fa-spin');
+        loadingIcon.style.position = 'absolute';
+        loadingIcon.style.top = '50%';
+        loadingIcon.style.left = '50%';
+        loadingIcon.style.transform = 'translate(-50%, -50%)';
+        loadingIcon.style.fontSize = '50px';
+        loadingIcon.style.color = '#000';
+
+        loadingOverlay.appendChild(loadingIcon);
+        document.body.appendChild(loadingOverlay);
+
+        // Tunda navigasi ke halaman baru
+        setTimeout(function() {
+            window.location.href = 'tulis_pengaduan.php';
+        }, 1000); // Tunda selama 1 detik
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var tulisPengaduanLinks = document.querySelectorAll('.tulis-pengaduan-link');
+        tulisPengaduanLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah navigasi langsung ke halaman baru
+                showLoading(); // Memanggil fungsi showLoading() saat tautan diklik
+            });
+        });
+    });
+    </script>
 
 </body>
 

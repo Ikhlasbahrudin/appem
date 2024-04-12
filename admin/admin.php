@@ -54,6 +54,10 @@ if($_SESSION['level'] != "admin") {
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
     /* Animasi cahaya berkilat */
@@ -131,6 +135,12 @@ if($_SESSION['level'] != "admin") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Tambahkan link CSS Bootstrap di sini jika diperlukan -->
     <!-- Custom styles for this template -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <style>
     /* Stye untuk responsif */
@@ -141,6 +151,16 @@ if($_SESSION['level'] != "admin") {
             right: auto;
             margin-top: 10px;
         }
+    }
+
+    .accordion .card-header .fa {
+        transition: transform 0.3s ease-in-out;
+        /* Animasi rotasi saat terbuka */
+    }
+
+    .collapsed .fa-caret-down {
+        transform: rotate(0deg);
+        /* Anak panah tetap mengarah ke kanan saat accordion tertutup */
     }
     </style>
 
@@ -195,44 +215,46 @@ if($_SESSION['level'] != "admin") {
                     <i class="fas fa-fw fa-check"></i>
                     <span>Verifikasi Pengaduan</span></a>
             </li>
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Data</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">List Data:</h6>
-                        <a class="collapse-item" href="lihat_petugas.php">Data Petugas</a>
-                        <a class="collapse-item" href="lihat_masyarakat.php">Data Masyarakat</a>
-                        <a class="collapse-item" href="lihat_laporan.php">Data Laporan</a>
-                        <a class="collapse-item" href="lihat_tanggapan.php">Data Tanggapan</a>
+            <ul class="nav flex-column">
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Data</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">List Data:</h6>
+                            <a class="collapse-item" href="lihat_petugas.php">Data Petugas</a>
+                            <a class="collapse-item" href="lihat_masyarakat.php">Data Masyarakat</a>
+                            <a class="collapse-item" href="lihat_laporan.php">Data Laporan</a>
+                            <a class="collapse-item" href="lihat_tanggapan.php">Data Tanggapan</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">List Laporan:</h6>
-                        <a class="collapse-item" href="preview_petugas.php">Laporan Petugas</a>
-                        <a class="collapse-item" href="preview_masyarakat.php">Laporan Masyarakat</a>
-                        <a class="collapse-item" href="preview_pengaduan.php">Laporan Pengaduan</a>
-                        <a class="collapse-item" href="preview_tanggapan.php">Laporan Tanggapan</a>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-fw fa-print"></i>
+                        <span>Laporan</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">List Laporan:</h6>
+                            <a class="collapse-item" href="preview_petugas.php">Laporan Petugas</a>
+                            <a class="collapse-item" href="preview_masyarakat.php">Laporan Masyarakat</a>
+                            <a class="collapse-item" href="preview_pengaduan.php">Laporan Pengaduan</a>
+                            <a class="collapse-item" href="preview_tanggapan.php">Laporan Tanggapan</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+
+
+            </ul>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -264,7 +286,7 @@ if($_SESSION['level'] != "admin") {
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12 d-flex align-items-center">
-                                <h1 class="page-title">Aplikasi Pengaduan Masyarakat</h1>
+                                <h1 class="page-title">Appem</h1>
                             </div>
                         </div>
                     </div>
@@ -345,47 +367,6 @@ if($_SESSION['level'] != "admin") {
 
 
 
-                            <!-- Script untuk menampilkan dan menyembunyikan dropdown, serta mengambil konten halaman lihat_pengaduan.php -->
-                            <script>
-                            // Fungsi untuk menampilkan dropdown dan memuat konten halaman lihat_pengaduan.php di dalamnya
-                            function toggleDropdown() {
-                                var dropdown = document.getElementById("messageDropdown");
-                                if (dropdown.style.display === "block") {
-                                    dropdown.style.display = "none";
-                                } else {
-                                    // Menggunakan AJAX untuk mengambil konten dari halaman lihat_pengaduan.php
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.onreadystatechange = function() {
-                                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                                            if (xhr.status === 200) {
-                                                // Menampilkan konten yang diambil di dalam dropdown
-                                                dropdown.innerHTML = xhr.responseText;
-                                                dropdown.style.display = "block";
-                                            } else {
-                                                console.error('Terjadi kesalahan: ' + xhr.status);
-                                            }
-                                        }
-                                    };
-                                    xhr.open('GET', 'lihat_pengaduan.php', true);
-                                    xhr.send();
-                                }
-                            }
-
-                            // Panggil fungsi toggleDropdown saat tombol diklik
-                            document.getElementById("openChat").addEventListener("click", function(event) {
-                                toggleDropdown();
-                                event.stopPropagation(); // Mencegah penutupan dropdown saat tombol diklik
-                            });
-
-                            // Tutup dropdown saat diklik di luar area dropdown
-                            window.addEventListener("click", function(event) {
-                                var dropdown = document.getElementById("messageDropdown");
-                                if (event.target !== dropdown && !dropdown.contains(event.target)) {
-                                    dropdown.style.display = "none";
-                                }
-                            });
-                            </script>
-
 </body>
 
 </html>
@@ -441,47 +422,45 @@ function showProfileWidget() {
     <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Bootstrap core JavaScript-->
 
 
+
+
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-// Tambahkan event listener untuk setiap elemen
-navLinks.forEach(function(navLink) {
-    navLink.addEventListener('click', function(event) {
-        // Cari target collapse dari elemen yang diklik
-        var targetCollapse = document.querySelector(navLink.getAttribute('data-target'));
+function toggleCollapse(id) {
+    var element = document.getElementById(id);
+    var arrow = document.querySelector('[data-target="#' + id + '"] i');
 
-        // Cek apakah collapse sedang terbuka
-        var isExpanded = targetCollapse.classList.contains('show');
-
-        // Tutup semua collapse yang terbuka
-        document.querySelectorAll('.collapse.show').forEach(function(collapse) {
-            collapse.classList.remove('show');
+    if (element.classList.contains("show")) {
+        // Tutup accordion
+        element.classList.remove("show");
+        element.setAttribute("aria-expanded", "false");
+        arrow.classList.remove('fa-caret-down');
+        arrow.classList.add('fa-caret-right');
+    } else {
+        // Tutup semua accordion sebelum membuka yang baru
+        var accordions = document.querySelectorAll('.collapse.show');
+        accordions.forEach(function(acc) {
+            acc.classList.remove("show");
+            acc.setAttribute("aria-expanded", "false");
+            var arrow = document.querySelector('[data-target="#' + acc.id + '"] i');
+            arrow.classList.remove('fa-caret-down');
+            arrow.classList.add('fa-caret-right');
         });
 
-        // Jika collapse tidak sedang terbuka, buka yang terkait dengan elemen yang diklik
-        if (!isExpanded) {
-            targetCollapse.classList.add('show');
-        }
-    });
-});
+        // Buka accordion yang dipilih
+        element.classList.add("show");
+        element.setAttribute("aria-expanded", "true");
+        arrow.classList.remove('fa-caret-right');
+        arrow.classList.add('fa-caret-down');
+    }
+}
 </script>
-
-
-</script>
-</script>
-<!-- Bootstrap JavaScript dan jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
 
 </body>
 
