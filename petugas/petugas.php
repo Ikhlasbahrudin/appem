@@ -78,7 +78,7 @@ if($_SESSION['level'] != "petugas") {
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="logo/logo.png" rel="icon">
+    <link href="../logo/logo.png" rel="icon">
 
 
     <!-- Custom styles for this template-->
@@ -125,14 +125,17 @@ if($_SESSION['level'] != "petugas") {
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+
             <!-- Sidebar - Brand -->
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="lihat_pengaduan.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-keyboard"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <div class="" style="margin-top: 70px;">
+                    <!-- Ganti 'logo.png' dengan jalur dan nama file logo Anda -->
+                    <img src="../logo/logo.png" alt="Logo" style="width: 100px; height: auto; border-radius: 10px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">APPEM <sup></sup></div>
+
             </a>
+            <hr>
+            <hr>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 

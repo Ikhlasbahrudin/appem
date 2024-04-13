@@ -60,7 +60,7 @@
                         $status_color = "";
                         switch ($data['status']) {
                             case '0':
-                                $status = "<strong class='text-warning'>Belum ditanggapi</strong>";
+                                $status = "<strong class='text-warning'>Belum diproses</strong>";
                                 break;
                             case 'proses':
                                 $status = "<strong class='text-primary'>Sedang diproses</strong>";

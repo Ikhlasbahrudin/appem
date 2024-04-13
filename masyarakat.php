@@ -47,7 +47,7 @@ if(!isset($_SESSION['nama'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>APPEM MASYARAKAT</title>
+    <title>APPEM</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,13 +82,16 @@ if(!isset($_SESSION['nama'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-keyboard"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <div class="" style="margin-top: 70px;">
+                    <!-- Ganti 'logo.png' dengan jalur dan nama file logo Anda -->
+                    <img src="logo/logo.png" alt="Logo" style="width: 100px; height: auto; border-radius: 10px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">APPEM</div>
+
             </a>
 
+            <hr>
+            <hr>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 

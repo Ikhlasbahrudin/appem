@@ -48,8 +48,7 @@ if($_SESSION['level'] != "admin") {
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="../logo/logo.png" rel="icon">
+
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Bootstrap core CSS -->
@@ -69,32 +68,6 @@ if($_SESSION['level'] != "admin") {
         100% {
             box-shadow: 0 0 20px 20px #ffffff;
         }
-    }
-
-
-    /* Style untuk tombol Live Chat */
-    .live-chat-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        animation: shine 1s infinite alternate;
-    }
-
-    body {
-        background-image: url('../appem/background/background.jpg');
-        /* Ubah dengan jalur gambar Anda */
-        background-size: cover;
-        /* Atur agar gambar latar belakang menutupi seluruh area body */
-        background-position: center;
-        /* Atur posisi gambar latar belakang ke tengah */
-        background-repeat: no-repeat;
-        /* Hindari pengulangan gambar latar belakang */
-        height: 100%;
-        /* Menetapkan tinggi gambar latar belakang menjadi 100% */
-        width: auto;
-        /* Menetapkan lebar gambar latar belakang menjadi otomatis */
-        background-color: rgba(255, 255, 255, 0.5);
-        /* Ubah nilai alpha (0.5) sesuai dengan tingkat transparansi yang Anda inginkan */
     }
     </style>
 </head>
@@ -133,9 +106,8 @@ if($_SESSION['level'] != "admin") {
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Tambahkan link CSS Bootstrap di sini jika diperlukan -->
-    <!-- Custom styles for this template -->
-
+    <!-- Favicons -->
+    <link href="../logo/logo.png" rel="icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
@@ -290,22 +262,20 @@ if($_SESSION['level'] != "admin") {
                             </div>
                         </div>
                     </div>
-                    <a href="/appem/chart/login.php" target="_blank"
-                        class="btn btn-primary rounded-circle live-chat-button"
-                        style="position: fixed; bottom: 20px; right: 20px;">
-                        <i class="fas fa-envelope"></i> <!-- Gunakan ikon pesan Font Awesome yang sesuai -->
-                    </a>
 
 
-
-
+                    <!-- Tombol chat hanya dengan ikon -->
+                    <button type="button" class="btn" onclick="window.open('/appem/chart/login.php', '_blank');"
+                        style="background: none; border: none;">
+                        <i class="fas fa-comment" style="font-size: 18px; color: blue;"></i>
+                    </button>
 
 
                     <!-- Tombol untuk menampilkan modal identitas -->
-                    <a href="#" class="btn btn-link text-primary" onclick="showProfileWidget()"
-                        style="position: fixed; top: 20px; right: 20px;">
+                    <a href="#" class="btn btn-link text-primary" onclick="showProfileWidget()">
                         <i class="fas fa-user fa-lg"></i>
                     </a>
+
 
                     <!-- Modal identitas -->
                     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
@@ -317,150 +287,108 @@ if($_SESSION['level'] != "admin") {
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
+
                                 </div>
+
                                 <div class="modal-body">
                                     <!-- Tempat menampilkan identitas -->
                                     <p>Nama Pengguna: <span id="username" class="font-weight-bold"></span></p>
-                                    <p>Level: <span id="level" class="font-weight-bold"></span></p>
+                                    <p>level: <span id="level" class="font-weight-bold"></span></p>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                    <script>
+                    function showProfileWidget() {
+                        // Mendapatkan nama pengguna dan level dari session
+                        var username = "<?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : 'Pengguna'; ?>";
+                        var level = "<?php echo isset($_SESSION['level']) ? $_SESSION['level'] : ''; ?>";
 
-                    <!-- Dropdown untuk menampilkan daftar pesan -->
-                    <div id="messageDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="openChat"
-                        style="position: fixed; top: 80px; right: 20px; max-width: 300px; display: none;">
-                        <!-- List notifikasi pesan masuk akan ditampilkan di sini -->
-                        <div class="dropdown-item-text">
-                            <!-- Contoh pesan -->
-                            <!-- Tombol atau ikon untuk membuka kotak obrolan -->
-                            <button id="openChat" class="btn btn-primary rounded-circle live-chat-button"
-                                style="position: fixed; top: 20px; right: 70px;">
-                                <i class="fas fa-envelope"></i> <!-- Gunakan ikon pesan Font Awesome yang sesuai -->
-                            </button>
+                        // Menampilkan identitas pengguna dalam modal
+                        document.getElementById("username").textContent = username;
+                        document.getElementById("level").textContent = level;
 
-                            <!-- Tombol untuk menampilkan modal identitas -->
-                            <a href="#" class="btn btn-link text-primary" onclick="showProfileWidget()"
-                                style="position: fixed; top: 20px; right: 20px;">
-                                <i class="fas fa-user fa-lg"></i>
-                            </a>
+                        // Menampilkan modal
+                        $('#profileModal').modal('show');
+                    }
+                    </script>
 
-                            <!-- Modal identitas -->
-                            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
-                                aria-labelledby="profileModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title" id="profileModalLabel">Profil Pengguna</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Tempat menampilkan identitas -->
-                                            <p>Nama Pengguna: <span id="username" class="font-weight-bold"></span></p>
-                                            <p>Level: <span id="level" class="font-weight-bold"></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                </nav>
+
+                <div class="container-fluid">
+                    <?php include 'halaman_admin.php'; ?>
+                </div>
+
+            </div>
+
+            <!-- End of Main Content -->
 
 
 
-</body>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white" style="position: relative;">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; ikhlas bahrudin</span>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
-</html>
-
-</div>
-<script>
-function showProfileWidget() {
-    // Mendapatkan nama pengguna dan level dari session
-    var username = "<?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : 'Pengguna'; ?>";
-    var level = "<?php echo isset($_SESSION['level']) ? $_SESSION['level'] : ''; ?>";
-
-    // Menampilkan identitas pengguna dalam modal
-    document.getElementById("username").textContent = username;
-    document.getElementById("level").textContent = level;
-
-    // Menampilkan modal
-    $('#profileModal').modal('show');
-}
-</script>
-
-
-</nav>
-
-<div class="container-fluid">
-    <?php include 'halaman_admin.php'; ?>
-</div>
-
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; ikhlas bahrudin</span>
         </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-</footer>
+    <!-- End of Page Wrapper -->
 
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-</script>
-<!-- End of Footer -->
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-</div>
-<!-- End of Content Wrapper -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
 
-</div>
-<!-- End of Page Wrapper -->
+    <script>
+    function toggleCollapse(id) {
+        var element = document.getElementById(id);
+        var arrow = document.querySelector('[data-target="#' + id + '"] i');
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-
-
-
-
-
-<!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-function toggleCollapse(id) {
-    var element = document.getElementById(id);
-    var arrow = document.querySelector('[data-target="#' + id + '"] i');
-
-    if (element.classList.contains("show")) {
-        // Tutup accordion
-        element.classList.remove("show");
-        element.setAttribute("aria-expanded", "false");
-        arrow.classList.remove('fa-caret-down');
-        arrow.classList.add('fa-caret-right');
-    } else {
-        // Tutup semua accordion sebelum membuka yang baru
-        var accordions = document.querySelectorAll('.collapse.show');
-        accordions.forEach(function(acc) {
-            acc.classList.remove("show");
-            acc.setAttribute("aria-expanded", "false");
-            var arrow = document.querySelector('[data-target="#' + acc.id + '"] i');
+        if (element.classList.contains("show")) {
+            // Tutup accordion
+            element.classList.remove("show");
+            element.setAttribute("aria-expanded", "false");
             arrow.classList.remove('fa-caret-down');
             arrow.classList.add('fa-caret-right');
-        });
+        } else {
+            // Tutup semua accordion sebelum membuka yang baru
+            var accordions = document.querySelectorAll('.collapse.show');
+            accordions.forEach(function(acc) {
+                acc.classList.remove("show");
+                acc.setAttribute("aria-expanded", "false");
+                var arrow = document.querySelector('[data-target="#' + acc.id + '"] i');
+                arrow.classList.remove('fa-caret-down');
+                arrow.classList.add('fa-caret-right');
+            });
 
-        // Buka accordion yang dipilih
-        element.classList.add("show");
-        element.setAttribute("aria-expanded", "true");
-        arrow.classList.remove('fa-caret-right');
-        arrow.classList.add('fa-caret-down');
+            // Buka accordion yang dipilih
+            element.classList.add("show");
+            element.setAttribute("aria-expanded", "true");
+            arrow.classList.remove('fa-caret-right');
+            arrow.classList.add('fa-caret-down');
+        }
     }
-}
-</script>
+    </script>
 
 </body>
 
