@@ -43,7 +43,7 @@
         rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
@@ -144,15 +144,16 @@
         <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
             <div class="carousel-item active"
-                style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)">
+                style="background-image: url(assets/img/hero-carousel/hero-carousel-9.jpg)"></div>
+            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-8.jpg)">
             </div>
-            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)">
+            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-10.jpg)">
             </div>
-            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-4.jpg)">
+            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-6.jpg)">
             </div>
-            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-5.jpg)">
+            <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-7.jpg)">
             </div>
+
 
             <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
