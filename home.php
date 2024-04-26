@@ -520,7 +520,7 @@
                                 <h4>home</h4>
                                 <ul>
                                     <li><a href="#header">home</a></li>
-                                    <li><a href="#Blog">Dokumentasi</a></li>
+                                    <li><a href="#Blog">Blog</a></li>
 
 
                                 </ul>
@@ -540,7 +540,7 @@
                             <!-- You can delete the links only if you purchased the pro version. -->
                             <!-- Licensing information: https://bootstrapmade.com/license/ -->
                             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
-                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
                         </div>
                     </div>
                 </div>
