@@ -54,13 +54,9 @@ session_start();
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <!-- Nav Item - tulis_pengaduan -->
 
-            <!-- Nav Item - lihat_pengaduan -->
-            <li class="nav-item">
-                <a class="nav-link" href="verifikasi_pengaduan.php">
-                    <i class="fas fa-fw fa-eye"></i>
-                    <span>verifikasi_pengaduan</span></a>
+
+
             </li>
             <!-- Nav Item - keluar -->
             <li class="nav-item">
@@ -109,7 +105,7 @@ session_start();
                                             <th>Isi Laporan</th>
                                             <th>Foto</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+
                                         </tr>
                                     </thead>
                                     <?php
@@ -151,18 +147,7 @@ if (file_exists($foto_path)) {
         // Menampilkan status dengan gaya teks yang sesuai
         echo '<td class="' . $status_class . '">' . $data['status'] . '</td>';
 
-        // Menampilkan tombol "Detail" dengan sedikit jarak antara tombol
-        echo '<td>';
-        echo '<div class="btn-group">';
-        if (!empty($data['id_pengaduan'])) {
-            echo '<a href="detail_pengaduan.php?id=' . $data['id_pengaduan'] . '" class="btn btn-info btn-sm">';
-            echo '<i class="fas fa-info"></i> Detail</a>';
-            echo '<span>&nbsp;&nbsp;</span>'; // Menambahkan spasi di sini
-        }
-        echo '</div>';
-        echo '</td>';
-
-        echo '</tr>';
+       
     }
 } else {
     // Jika variabel session 'nama' tidak ada

@@ -11,38 +11,37 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <style>
+    .form-container {
+        display: flex;
+    }
 
-        .form-container {
-            display: flex;
-        }
+    .form-container .left-column {
+        flex: 1;
+        padding-right: 20px;
+    }
 
-        .form-container .left-column {
-            flex: 1;
-            padding-right: 20px;
-        }
+    .form-container .right-column {
+        flex: 1;
+        padding-left: 20px;
+    }
 
-        .form-container .right-column {
-            flex: 1;
-            padding-left: 20px;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }    
-
-        
+    .form-group img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
     </style>
 </head>
 
@@ -78,7 +77,8 @@
                     <span class="text">Kembali</span>
                 </a>
 
-                <a href="proses.php?id=<?php echo $data['id_pengaduan']; ?>" class="btn btn-warning btn-icon-split" onclick="return confirm('Yakin akan diproses?')">
+                <a href="proses.php?id=<?php echo $data['id_pengaduan']; ?>" class="btn btn-warning btn-icon-split"
+                    onclick="return confirm('Yakin akan diproses?')">
                     <span class="icon text-white-50">
                         <i class="fas fa-spinner fa-spin"></i>
                     </span>
@@ -90,17 +90,33 @@
                     <div class="left-column">
                         <div class="form-group Cols-sm-6">
                             <label>Tanggal Pengaduan</label>
-                            <input type="text" name="tgl_pengaduan" value="<?php echo $data['tgl_pengaduan']; ?>" class="form-control" readonly>
+                            <input type="text" name="tgl_pengaduan" value="<?php echo $data['tgl_pengaduan']; ?>"
+                                class="form-control" readonly>
                         </div>
 
                         <div class="form-group Cols-sm-6">
                             <label>NIK</label>
-                            <input type="text" name="nik" value="<?php echo $data['nik']; ?>" class="form-control" readonly>
+                            <input type="text" name="nik" value="<?php echo $data['nik']; ?>" class="form-control"
+                                readonly>
                         </div>
 
                         <div class="form-group Cols-sm-6">
                             <label>Isi Laporan</label>
-                            <textarea class="form-control" rows="7" name="isi_laporan" readonly=""><?php echo $data['isi_laporan']; ?></textarea>
+                            <textarea class="form-control" rows="7" name="isi_laporan"
+                                readonly=""><?php echo $data['isi_laporan']; ?></textarea>
+                            <?php
+                    // Mengecek apakah kolom 'lokasi' tidak kosong
+                    if (!empty($data['lokasi'])) {
+                        // Mendapatkan nilai koordinat dari kolom 'lokasi'
+                        $koordinat = $data['lokasi'];
+
+                        // Membuat tautan ke Google Maps dengan parameter koordinat
+                        echo '<a href="https://maps.google.com/?q=' . $koordinat . '" target="_blank" class="btn btn-primary mt-3">Tampilkan Lokasi di Google Maps</a>';
+                    } else {
+                        // Jika kolom 'lokasi' kosong, tampilkan pesan bahwa lokasi tidak tersedia
+                        echo '<p>Lokasi tidak tersedia</p>';
+                    }
+                    ?>
                         </div>
                     </div>
 
@@ -108,18 +124,18 @@
                         <div class="form-group Cols-sm-6">
                             <label>Bukti Foto</label>
                             <?php
-                            // Mendapatkan nama file foto dari kolom 'foto' di tabel pengaduan
-                            $nama_file_foto = $data['foto'];
-                            
-                            // Mengecek apakah nama file foto tidak kosong
-                            if (!empty($nama_file_foto)) {
-                                // Menampilkan foto jika nama file tidak kosong
-                                echo '<img src="../foto/' . $nama_file_foto . '" alt="foto pengaduan" class="img-fluid">';
-                            } else {
-                                // Menampilkan placeholder jika nama file kosong atau foto tidak ditemukan
-                                echo '<p>Tidak ada foto tersedia</p>';
-                            }
-                            ?>
+                    // Mendapatkan nama file foto dari kolom 'foto' di tabel pengaduan
+                    $nama_file_foto = $data['foto'];
+                    
+                    // Mengecek apakah nama file foto tidak kosong
+                    if (!empty($nama_file_foto)) {
+                        // Menampilkan foto jika nama file tidak kosong
+                        echo '<img src="../foto/' . $nama_file_foto . '" alt="foto pengaduan" class="img-fluid">';
+                    } else {
+                        // Menampilkan placeholder jika nama file kosong atau foto tidak ditemukan
+                        echo '<p>Tidak ada foto tersedia</p>';
+                    }
+                    ?>
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,9 @@ if(!isset($_SESSION['nama'])) {
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Custom JavaScript -->
 </head>
 
 <body>
@@ -54,6 +57,9 @@ if(!isset($_SESSION['nama'])) {
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Custom JavaScript -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -217,6 +223,74 @@ if(!isset($_SESSION['nama'])) {
                     }
                     </script>
 
+                    <script>
+                    // Fungsi untuk logout otomatis setelah satu jam
+                    $(document).ready(function() {
+                        var idleTime = 0;
+                        var idleInterval = setInterval(timerIncrement, 60000); // 1 menit = 60000 milidetik
+
+                        // Mengatur tindakan logout otomatis setelah satu jam
+                        function timerIncrement() {
+                            idleTime++;
+                            if (idleTime > 60) { // Satu jam = 60 menit
+                                window.location.href = '../logout.php'; // Redirect ke halaman logout
+                            }
+                        }
+
+                        // Reset waktu idle ketika terjadi aktivitas
+                        $(this).mousemove(function(e) {
+                            idleTime = 0;
+                        });
+                        $(this).keypress(function(e) {
+                            idleTime = 0;
+                        });
+                    });
+                    </script>
+
+                    <script>
+                    function showLoading() {
+                        // Tambahkan loading
+                        var loadingOverlay = document.createElement('div');
+                        loadingOverlay.style.position = 'fixed';
+                        loadingOverlay.style.top = '0';
+                        loadingOverlay.style.left = '0';
+                        loadingOverlay.style.width = '100%';
+                        loadingOverlay.style.height = '100%';
+                        loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                        loadingOverlay.style.zIndex = '9999';
+
+                        var loadingIcon = document.createElement('i');
+                        loadingIcon.classList.add('fas', 'fa-spinner', 'fa-spin');
+                        loadingIcon.style.position = 'absolute';
+                        loadingIcon.style.top = '50%';
+                        loadingIcon.style.left = '50%';
+                        loadingIcon.style.transform = 'translate(-50%, -50%)';
+                        loadingIcon.style.fontSize = '50px';
+                        loadingIcon.style.color = '#000';
+
+                        loadingOverlay.appendChild(loadingIcon);
+                        document.body.appendChild(loadingOverlay);
+
+                        // Tunda navigasi ke halaman baru
+                        setTimeout(function() {
+                            window.location.href = 'tulis_pengaduan.php';
+                        }, 1000); // Tunda selama 1 detik
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var tulisPengaduanLinks = document.querySelectorAll('.tulis-pengaduan-link');
+                        tulisPengaduanLinks.forEach(function(link) {
+                            link.addEventListener('click', function(event) {
+                                event
+                            .preventDefault(); // Mencegah navigasi langsung ke halaman baru
+                                showLoading
+                            (); // Memanggil fungsi showLoading() saat tautan diklik
+                            });
+                        });
+                    });
+                    </script>
+
+
 
                 </nav>
 
@@ -267,46 +341,6 @@ if(!isset($_SESSION['nama'])) {
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <script>
-    function showLoading() {
-        // Tambahkan loading
-        var loadingOverlay = document.createElement('div');
-        loadingOverlay.style.position = 'fixed';
-        loadingOverlay.style.top = '0';
-        loadingOverlay.style.left = '0';
-        loadingOverlay.style.width = '100%';
-        loadingOverlay.style.height = '100%';
-        loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-        loadingOverlay.style.zIndex = '9999';
-
-        var loadingIcon = document.createElement('i');
-        loadingIcon.classList.add('fas', 'fa-spinner', 'fa-spin');
-        loadingIcon.style.position = 'absolute';
-        loadingIcon.style.top = '50%';
-        loadingIcon.style.left = '50%';
-        loadingIcon.style.transform = 'translate(-50%, -50%)';
-        loadingIcon.style.fontSize = '50px';
-        loadingIcon.style.color = '#000';
-
-        loadingOverlay.appendChild(loadingIcon);
-        document.body.appendChild(loadingOverlay);
-
-        // Tunda navigasi ke halaman baru
-        setTimeout(function() {
-            window.location.href = 'tulis_pengaduan.php';
-        }, 1000); // Tunda selama 1 detik
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var tulisPengaduanLinks = document.querySelectorAll('.tulis-pengaduan-link');
-        tulisPengaduanLinks.forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Mencegah navigasi langsung ke halaman baru
-                showLoading(); // Memanggil fungsi showLoading() saat tautan diklik
-            });
-        });
-    });
-    </script>
 
 </body>
 

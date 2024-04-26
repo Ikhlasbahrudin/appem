@@ -11,12 +11,37 @@ if(!isset($_SESSION['nama'])) {
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Anda belum login</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lihat Petugas</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this page -->
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 18px;
+            /* Ubah ukuran font saat layar kecil */
+        }
+    }
+    </style>
 </head>
+
 
 <body>
     <div class="container mt-5">
@@ -115,24 +140,12 @@ if($_SESSION['level'] != "admin") {
 
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-    /* Stye untuk responsif */
-    @media(max-width: 767px) {
-        .live-chat-button {
-            position: relative;
-            bottom: auto;
-            right: auto;
-            margin-top: 10px;
+    /* Gaya untuk ukuran layar kecil */
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 24px;
+            /* Atur ukuran teks menjadi lebih kecil */
         }
-    }
-
-    .accordion .card-header .fa {
-        transition: transform 0.3s ease-in-out;
-        /* Animasi rotasi saat terbuka */
-    }
-
-    .collapsed .fa-caret-down {
-        transform: rotate(0deg);
-        /* Anak panah tetap mengarah ke kanan saat accordion tertutup */
     }
     </style>
 
@@ -242,6 +255,8 @@ if($_SESSION['level'] != "admin") {
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+
+
         </ul>
 
         <!-- Content Wrapper -->
@@ -263,132 +278,111 @@ if($_SESSION['level'] != "admin") {
                         </div>
                     </div>
 
-
-                    <!-- Tombol chat hanya dengan ikon -->
-                    <button type="button" class="btn" onclick="window.open('/appem/chart/login.php', '_blank');"
-                        style="background: none; border: none;">
+                    <!-- Tombol chat -->
+                    <button type="button" class="btn btn-link"
+                        onclick="window.open('/appem/chart/login.php', '_blank');">
                         <i class="fas fa-comment" style="font-size: 18px; color: blue;"></i>
                     </button>
 
-
                     <!-- Tombol untuk menampilkan modal identitas -->
-                    <a href="#" class="btn btn-link text-primary" onclick="showProfileWidget()">
+                    <a href="#" class="btn btn-link text-primary mr-auto" onclick="showProfileWidget()">
                         <i class="fas fa-user fa-lg"></i>
                     </a>
+                </nav>
 
-
-                    <!-- Modal identitas -->
-                    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
-                        aria-labelledby="profileModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title" id="profileModalLabel">Profil Pengguna</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-
-                                </div>
-
-                                <div class="modal-body">
-                                    <!-- Tempat menampilkan identitas -->
-                                    <p>Nama Pengguna: <span id="username" class="font-weight-bold"></span></p>
-                                    <p>level: <span id="level" class="font-weight-bold"></span></p>
-                                </div>
-
+                <!-- Modal identitas -->
+                <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
+                    aria-labelledby="profileModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="profileModalLabel">Profil Pengguna</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tempat menampilkan identitas -->
+                                <p>Nama Pengguna: <span id="username" class="font-weight-bold"></span></p>
+                                <p>level: <span id="level" class="font-weight-bold"></span></p>
                             </div>
                         </div>
                     </div>
-                    <script>
-                    function showProfileWidget() {
-                        // Mendapatkan nama pengguna dan level dari session
-                        var username = "<?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : 'Pengguna'; ?>";
-                        var level = "<?php echo isset($_SESSION['level']) ? $_SESSION['level'] : ''; ?>";
-
-                        // Menampilkan identitas pengguna dalam modal
-                        document.getElementById("username").textContent = username;
-                        document.getElementById("level").textContent = level;
-
-                        // Menampilkan modal
-                        $('#profileModal').modal('show');
-                    }
-                    </script>
-
-
-                </nav>
+                </div>
 
                 <div class="container-fluid">
                     <?php include 'halaman_admin.php'; ?>
                 </div>
 
             </div>
-
             <!-- End of Main Content -->
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white" style="position: relative;">
+                <div class="container-fluid">
+
+                </div>
+                <!-- End of Container -->
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; ikhlas bahrudin</span>
                 </div>
             </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../js/sb-admin-2.min.js"></script>
 
-    <script>
-    function toggleCollapse(id) {
-        var element = document.getElementById(id);
-        var arrow = document.querySelector('[data-target="#' + id + '"] i');
+        <!-- Page level plugins -->
+        <script src="../vendor/chart.js/Chart.min.js"></script>
 
-        if (element.classList.contains("show")) {
-            // Tutup accordion
-            element.classList.remove("show");
-            element.setAttribute("aria-expanded", "false");
-            arrow.classList.remove('fa-caret-down');
-            arrow.classList.add('fa-caret-right');
-        } else {
-            // Tutup semua accordion sebelum membuka yang baru
-            var accordions = document.querySelectorAll('.collapse.show');
-            accordions.forEach(function(acc) {
-                acc.classList.remove("show");
-                acc.setAttribute("aria-expanded", "false");
-                var arrow = document.querySelector('[data-target="#' + acc.id + '"] i');
+        <!-- Page level custom scripts -->
+        <script src="../js/demo/chart-area-demo.js"></script>
+        <script src="../js/demo/chart-pie-demo.js"></script>
+
+        <script>
+        function toggleCollapse(id) {
+            var element = document.getElementById(id);
+            var arrow = document.querySelector('[data-target="#' + id + '"] i');
+
+            if (element.classList.contains("show")) {
+                // Tutup accordion
+                element.classList.remove("show");
+                element.setAttribute("aria-expanded", "false");
                 arrow.classList.remove('fa-caret-down');
                 arrow.classList.add('fa-caret-right');
-            });
+            } else {
+                // Tutup semua accordion sebelum membuka yang baru
+                var accordions = document.querySelectorAll('.collapse.show');
+                accordions.forEach(function(acc) {
+                    acc.classList.remove("show");
+                    acc.setAttribute("aria-expanded", "false");
+                    var arrow = document.querySelector('[data-target="#' + acc.id + '"] i');
+                    arrow.classList.remove('fa-caret-down');
+                    arrow.classList.add('fa-caret-right');
+                });
 
-            // Buka accordion yang dipilih
-            element.classList.add("show");
-            element.setAttribute("aria-expanded", "true");
-            arrow.classList.remove('fa-caret-right');
-            arrow.classList.add('fa-caret-down');
+                // Buka accordion yang dipilih
+                element.classList.add("show");
+                element.setAttribute("aria-expanded", "true");
+                arrow.classList.remove('fa-caret-right');
+                arrow.classList.add('fa-caret-down');
+            }
         }
-    }
-    </script>
+        </script>
 
 </body>
 
