@@ -31,6 +31,7 @@
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="path/to/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Font Awesome icons (free version)-->
@@ -41,6 +42,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
+
+    <!-- Tambahkan Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
@@ -116,7 +125,11 @@
             </nav><!-- .navbar -->
 
         </div>
-    </header><!-- End Header -->
+
+
+    </header>
+
+    <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero">
@@ -131,7 +144,7 @@
                         <p> "Ada masalah di Desa Sukamaju yang perlu kami tangani? Segera laporkan! Ayok, adukan
                             sekarang untuk solusi cepat."</p>
                         <a data-aos="fade-up" data-aos-delay="100" href="#login"
-                            class="btn-get-started btn-primary">Mulai</a>
+                            class="btn-get-started btn-warning">Mulai</a>
 
                     </div>
                 </div>
@@ -176,8 +189,11 @@
                     <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
                         <div class="content">
                             <h3>Silahkan masukan username dan password anda</h3>
-                            <p>Berikut adalah kolom login untuk masyarakat dan petugas/admin
-                            <p>jika anda petugas/admin silahkan login sesuai petunjuk yang sudah ada terimakasih.</p>
+                            <p>Berikut adalah kolom login untuk masyarakat
+                            <p>jika anda <strong>petugas/admin</strong> silahkan login sesuai petunjuk yang sudah ada
+                                terimakasih.</p>
+
+                            </p>
                         </div>
                     </div>
 
@@ -280,20 +296,7 @@
                         waktu. </p>
                 </div>
 
-                <div class="row primary-content-center">
-                    <div class="col-lg-4 ms-auto">
-                        <div class="social-links d-flex primary-content-center">
-                            <a href="#" class="d-flex align-items-center justify-content-center text-primary me-3"><i
-                                    class="bi bi-twitter"></i></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center text-primary me-3"><i
-                                    class="bi bi-facebook"></i></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center text-primary me-3"><i
-                                    class="bi bi-instagram"></i></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center text-primary"><i
-                                    class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
             <section id="contact" class="contact">
@@ -308,7 +311,7 @@
 
                     <div class="row" data-aos="fade-in">
                         <!-- Kolom identitas -->
-                        <div class="col-lg-5 d-flex align-items-stretch">
+                        <div class="col-lg-5 d-flex flex-column align-items-stretch">
                             <div class="info">
                                 <div class="address">
                                     <i class="bi bi-geo-alt"></i>
@@ -323,127 +326,194 @@
                                 </div>
 
                                 <div class="phone">
-                                    <i class="bi bi-phone"></i>
+                                    <i class="bi bi-telephone"></i>
                                     <h4>Call:</h4>
                                     <p>+62 87731375513</p>
                                 </div>
+                                <div class="social-media">
+                                    <h4>Social media</h4>
+                                    <div class="social-links d-flex">
+                                        <a href="#" class="social-link me-3"><i class="bi bi-twitter"></i></a>
+                                        <a href="#" class="social-link me-3"><i class="bi bi-facebook"></i></a>
+                                        <a href="#" class="social-link me-3"><i class="bi bi-instagram"></i></a>
+                                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- End Kolom map -->
+                        <!-- End Kolom identitas -->
 
                         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                            <div id="map" style="width:100%; height:450px;"></div>
-
+                            <div id="map" style="width:100%; height:320px;"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
 
-            <tr></tr>
-
             <section id="Blog" class="recent-blog-posts">
                 <div class="container" data-aos="fade-up">
-                    <h1>Dokumentasi</h1>
+                    <h1>BLOG</h1>
+                    <?php
+        // Fungsi untuk mendapatkan ID video YouTube dari URL
+        function parseYoutubeVideoId($url) {
+            // Menentukan pola pencarian ID video YouTube dari URL
+            $pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
 
-                    <div class="row gy-5">
-                        <!-- Video 1 -->
-                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="post-item position-relative h-100">
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="assets/img/blog/blog1.jpg" class="img-fluid" alt="">
-                                    <span class="post-date">December 12</span>
-                                </div>
+            // Mencocokkan pola pada URL video YouTube
+            preg_match($pattern, $url, $matches);
 
-                                <div class="post-content d-flex flex-column">
-                                    <h3 class="post-title">tugas aplikasi pengaduan Masyarakat</h3>
+            // Mengembalikan ID video jika ditemukan, jika tidak, kembalikan null
+            return isset($matches[1]) ? $matches[1] : null;
+        }
 
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Robert</span>
-                                        </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">flog </span>
-                                        </div>
+        // Sertakan file koneksi ke database
+        include('koneksi.php');
+
+        // Query untuk mengambil data postingan dari tabel posts
+        $query = "SELECT * FROM posts";
+        $result = mysqli_query($koneksi, $query);
+
+        // Periksa apakah ada data postingan
+        if(mysqli_num_rows($result) > 0) { ?>
+                    <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <?php
+                $num_columns = 4; // Jumlah kolom yang ingin ditampilkan
+                $num_posts = mysqli_num_rows($result);
+                $num_slides = ceil($num_posts / $num_columns);
+                $counter = 0;
+
+                for ($i = 0; $i < $num_slides; $i++) {
+                    echo '<div class="carousel-item';
+                    if ($i == 0) echo ' active'; // Tandai slide pertama sebagai aktif
+                    echo '">';
+
+                    echo '<div class="row gx-4">';
+
+                    for ($j = 0; $j < $num_columns; $j++) {
+                        $post = mysqli_fetch_assoc($result);
+                        if (!$post) break; // Keluar dari loop jika tidak ada lagi postingan
+
+                        $thumbnail = $post['thumbnail'];
+                        $title = $post['title'];
+                        $author = $post['author'];
+                        $category = $post['category'];
+                        $content = $post['content'];
+                        $postDate = $post['post_date'];
+
+                        // Menampilkan postingan
+                        echo '<div class="col-lg-3 col-md-4 mb-4 post-column" data-aos="fade-up" data-aos-delay="100">
+                                <div class="post-item position-relative h-100">
+                                    <div class="post-img position-relative overflow-hidden" style="height: 200px;">
+                                        <!-- Atur tinggi gambar di sini -->
+                                        <img src="assets/img/post/' . $thumbnail . '" class="img-fluid rounded" alt="">
+                                        <span class="post-date">' . date("F j", strtotime($postDate)) . '</span>
                                     </div>
 
-                                    <hr>
+                                    <div class="post-content d-flex flex-column align-items-center">
+                                        <h3 class="post-title text-center">' . $title . '</h3>
 
-                                    <a href="#video-frame" class="readmore stretched-link"
-                                        onclick="scrollAndPlayVideo('nl19IyYYqX4')">
-                                        <span>Watch Video</span>
-                                        <i class="bi bi-play-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- End Video 1 -->
-
-                        <!-- Video 2 -->
-                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="post-item position-relative h-100">
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
-                                    <span class="post-date">July 17</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-                                    <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Mario Douglas</span>
+                                        <div class="meta d-flex align-items-center mt-auto">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-person"></i> <span class="ps-2">' . $author . '</span>
+                                            </div>
+                                            <span class="px-3 text-black-50">/</span>
+                                            <div class="d-flex align-items-center">
+                                            <i class="bi bi-collection-play"></i> <span class="ps-2">' . $category . '</span>
+                                            </div>
                                         </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
-                                        </div>
-                                    </div>
 
-                                    <hr>
+                                        <hr>';
 
-                                    <a href="#video-frame" class="readmore stretched-link"
-                                        onclick="scrollAndPlayVideo('jutYm3s4tO4')">
-                                        <span>Watch Video</span>
-                                        <i class="bi bi-play-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- End Video 2 -->
+                        // Periksa apakah konten berisi tautan video YouTube
+                        if (strpos($content, 'youtube.com/watch?v=') !== false) {
+                            $video_url = explode(" ", $content)[0];
+                            $video_id = parseYoutubeVideoId($video_url);
+                            echo '<button class="btn btn-secondary mt-auto btn-slide-left" onclick="playVideo(\'' . $video_id . '\')">Lihat Video</button>';
+                        }
 
-                        <!-- Video 3 -->
-                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="post-item position-relative h-100">
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                                    <span class="post-date">September 05</span>
-                                </div>
+                        echo '</div>
+                              </div>
+                              </div>';
+                        $counter++;
+                    }
 
-                                <div class="post-content d-flex flex-column">
-                                    <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
+                    echo '</div></div>';
+                }
+                ?>
+                        </div>
+                        <!-- Indikator Slide -->
+                        <ol class="carousel-indicators mb-3">
+                            <?php for ($i = 0; $i < $num_slides; $i++) : ?>
+                            <li data-bs-target="#postCarousel" data-bs-slide-to="<?php echo $i; ?>"
+                                <?php if ($i == 0) echo 'class="active"'; ?> onclick="goToSlide(<?php echo $i; ?>)">
+                            </li>
+                            <?php endfor; ?>
+                        </ol>
 
-                                    <div class="meta d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">Lisa Hunter</span>
-                                        </div>
-                                        <span class="px-3 text-black-50">/</span>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
-                                        </div>
-                                    </div>
+                        <!-- Tombol Next dan Back dengan Icon -->
+                        <div class="d-flex justify-content-end align-items-center mt-3">
+                            <button class="btn btn-secondary me-2" onclick="prevSlide()">
+                                <i class="bi bi-chevron-double-left"></i>
+                            </button>
 
-                                    <hr>
+                            <button class="btn btn-secondary" onclick="nextSlide()">
+                                <i class="bi bi-chevron-double-right"></i>
+                            </button>
+                        </div>
 
-                                    <a href="#video-frame" class="readmore stretched-link"
-                                        onclick="scrollAndPlayVideo('jutYm3s4tO4')">
-                                        <span>Watch Video</span>
-                                        <i class="bi bi-play-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- End Video 3 -->
+
+
+
+
                     </div>
+                    <?php } else {
+            // Jika tidak ada data postingan
+            echo "<p>Tidak ada postingan yang tersedia.</p>";
+        } ?>
                 </div>
+
+                <!-- Memutar video -->
+                <script>
+                function playVideo(videoId) {
+                    // Scroll ke bawah ke container video
+                    const videoContainer = document.getElementById('video-container');
+                    videoContainer.style.display = 'block'; // Tampilkan container video jika tersembunyi
+                    videoContainer.scrollIntoView({
+                        behavior: 'smooth'
+                    }); // Scrol ke bawah dengan efek halus
+
+                    // Mulai pemutaran video
+                    const videoFrame = document.getElementById('video-frame');
+                    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                }
+
+                function closeVideo() {
+                    // Hentikan pemutaran video
+                    const videoFrame = document.getElementById('video-frame');
+                    videoFrame.src = '';
+
+                    // Sembunyikan container video
+                    const videoContainer = document.getElementById('video-container');
+                    videoContainer.style.display = 'none';
+                }
+
+                function prevSlide() {
+                    const carousel = new bootstrap.Carousel(document.getElementById('postCarousel'));
+                    carousel.prev();
+                }
+
+                function nextSlide() {
+                    const carousel = new bootstrap.Carousel(document.getElementById('postCarousel'));
+                    carousel.next();
+                }
+
+                function goToSlide(slideIndex) {
+                    const carousel = new bootstrap.Carousel(document.getElementById('postCarousel'));
+                    carousel.to(slideIndex);
+                }
+                </script>
 
                 <!-- Tempatkan iframe di bawah -->
                 <div class="container mt-5" id="video-container" style="display: none;">
@@ -460,255 +530,268 @@
                     </div>
                 </div>
             </section>
-            <!-- End Recent Blog Posts Section -->
-
-            </main><!-- End #main -->
-
-            <!-- ======= Footer ======= -->
-            <footer id="footer" class="footer">
-
-                <div class="footer-content position-relative">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-4 col-md-6">
-                                <div class="footer-info">
-                                    <h3>Footer</h3>
-                                    <p>
-                                        Desa Sukamaju <br>
-                                        Admin<br><br>
-                                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                                        <strong>Email:</strong> info@example.com<br>
-                                    </p>
-                                    <div class="social-links d-flex mt-3">
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><i
-                                                class="bi bi-twitter"></i></a>
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><i
-                                                class="bi bi-facebook"></i></a>
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><i
-                                                class="bi bi-instagram"></i></a>
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><i
-                                                class="bi bi-linkedin"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- End footer info column-->
-
-                            <div class="col-lg-2 col-md-3 footer-links">
-                                <h4>contact</h4>
-                                <ul>
-                                    <li><a href="#contact">contact</a></li>
-
-                                </ul>
-                            </div><!-- End footer links column-->
-
-                            <div class="col-lg-2 col-md-3 footer-links">
-                                <h4>About</h4>
-                                <ul>
-                                    <li><a href="#about">about</a></li>
-
-                                </ul>
-                            </div><!-- End footer links column-->
-
-                            <div class="col-lg-2 col-md-3 footer-links">
-                                <h4>login</h4>
-                                <ul>
-                                    <li><a href="#login">login</a></li>
-
-                                </ul>
-                            </div><!-- End footer links column-->
-
-                            <div class="col-lg-2 col-md-3 footer-links">
-                                <h4>home</h4>
-                                <ul>
-                                    <li><a href="#header">home</a></li>
-                                    <li><a href="#Blog">Blog</a></li>
 
 
-                                </ul>
-                            </div><!-- End footer links column-->
+    </section>
+    <!-- End Recent Blog Posts Section -->
 
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="footer-content position-relative">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-info">
+                            <h3>Footer</h3>
+                            <p>
+                                Desa Sukamaju <br>
+                                Admin<br><br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+                            <div class="social-links d-flex mt-3">
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-twitter"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-linkedin"></i></a>
+                            </div>
                         </div>
-                    </div>
+                    </div><!-- End footer info column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>contact</h4>
+                        <ul>
+                            <li><a href="#contact">contact</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#about">about</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>login</h4>
+                        <ul>
+                            <li><a href="#login">login</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>home</h4>
+                        <ul>
+                            <li><a href="#header">home</a></li>
+                            <li><a href="#Blog">Blog</a></li>
+
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
                 </div>
+            </div>
+        </div>
 
-                <div class="footer-legal text-center position-relative">
-                    <div class="container">
-                        <div class="copyright">
-                            &copy; Copyright <strong><span>ikhlas bahrudin</span></strong>
-                        </div>
-                        <div class="credits">
-                            <!-- All the links in the footer should remain intact. -->
-                            <!-- You can delete the links only if you purchased the pro version. -->
-                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
-
-                        </div>
-                    </div>
+        <div class="footer-legal text-center position-relative">
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>ikhlas bahrudin</span></strong>
                 </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
 
-            </footer>
-            <!-- End Footer -->
+                </div>
+            </div>
+        </div>
 
-            <a href="#header" class="scroll-top d-flex align-items-center justify-content-center"><i
-                    class="bi bi-arrow-up-short"></i></a>
+    </footer>
+    <!-- End Footer -->
 
-            <div id="preloader"></div>
+    <a href="#header" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i>
+    </a>
 
-            <!-- Vendor JS Files -->
-            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="assets/vendor/aos/aos.js"></script>
-            <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-            <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-            <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-            <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-            <script src="assets/vendor/php-email-form/validate.js"></script>
+    <div id="preloader"></div>
 
-            <!-- Template Main JS File -->
-            <script src="assets/js/main.js"></script>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <script>
-            // Fungsi untuk menangani pengalihan dan pengguliran ke sesi yang dituju
-            function scrollToSection() {
-                var targetSection = document.getElementById("login");
-                // Menggunakan animasi pengguliran halus
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: "smooth"
-                });
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+    // Fungsi untuk menangani pengalihan dan pengguliran ke sesi yang dituju
+    function scrollToSection() {
+        var targetSection = document.getElementById("login");
+        // Menggunakan animasi pengguliran halus
+        window.scrollTo({
+            top: targetSection.offsetTop,
+            behavior: "smooth"
+        });
+    }
+    </script>
+
+
+    <script>
+    // Function untuk melihat masswprd
+    function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var toggleIcon = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
+    }
+
+    // Function to handle form submission on Enter key press
+    function handleEnter(event, nextInput) {
+        if (event.key === "Enter") {
+            if (nextInput === "submit") {
+                document.getElementById("loginForm").submit();
+            } else {
+                document.getElementById(nextInput).focus();
             }
-            </script>
+            return false; // Prevent form submission
+        }
+        return true;
+    }
 
+    // Event listener for password visibility toggle
+    document.getElementById("togglePassword").addEventListener("click", togglePassword);
 
-            <script>
-            // Function untuk melihat masswprd
-            function togglePassword() {
-                var passwordInput = document.getElementById("password");
-                var toggleIcon = document.getElementById("togglePassword");
+    // Check if there are values saved in localStorage for username and password
+    document.addEventListener('DOMContentLoaded', function() {
+        var savedUsername = localStorage.getItem('savedUsername');
+        var savedPassword = localStorage.getItem('savedPassword');
 
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    toggleIcon.classList.remove("fa-eye");
-                    toggleIcon.classList.add("fa-eye-slash");
-                } else {
-                    passwordInput.type = "password";
-                    toggleIcon.classList.remove("fa-eye-slash");
-                    toggleIcon.classList.add("fa-eye");
-                }
+        // Insert saved values into input if they exist
+        if (savedUsername) {
+            document.getElementById('username').value = savedUsername;
+        }
+        if (savedPassword) {
+            document.getElementById('password').value = savedPassword;
+        }
+    });
+
+    // Save username and password values to localStorage when user changes them
+    document.getElementById('username').addEventListener('input', function() {
+        localStorage.setItem('savedUsername', this.value);
+    });
+    document.getElementById('password').addEventListener('input', function() {
+        localStorage.setItem('savedPassword', this.value);
+    });
+
+    // Clear username and password values when user logs out or leaves the page
+    window.addEventListener('beforeunload', function() {
+        localStorage.removeItem('savedUsername');
+        localStorage.removeItem('savedPassword');
+    });
+    </script>
+
+    <script>
+    function scrollAndPlayVideo(videoId) {
+        // Scroll ke bawah ke container video
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.style.display = 'block'; // Tampilkan container video jika tersembunyi
+        videoContainer.scrollIntoView({
+            behavior: 'smooth'
+        }); // Scrol ke bawah dengan efek halus
+
+        // Mulai pemutaran video
+        const videoFrame = document.getElementById('video-frame');
+        videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+
+    function closeVideo() {
+        // Hentikan pemutaran video
+        const videoFrame = document.getElementById('video-frame');
+        videoFrame.src = '';
+
+        // Sembunyikan container video
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.style.display = 'none';
+    }
+    </script>
+    <!-- Panggil pustaka Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi-odF-Gt01kILpD8eq9dxlpqMwgLLRS4&callback=initMap"
+        async defer></script>
+
+    <!-- JavaScript untuk menampilkan peta dan marker -->
+    <script>
+    // Fungsi initMap akan dipanggil setelah pustaka Google Maps dimuat
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 20,
+            center: {
+                lat: -6.838084,
+                lng: 107.146801
             }
+        });
 
-            // Function to handle form submission on Enter key press
-            function handleEnter(event, nextInput) {
-                if (event.key === "Enter") {
-                    if (nextInput === "submit") {
-                        document.getElementById("loginForm").submit();
-                    } else {
-                        document.getElementById(nextInput).focus();
-                    }
-                    return false; // Prevent form submission
-                }
-                return true;
-            }
+        var marker = new google.maps.Marker({
+            position: {
+                lat: -6.838084,
+                lng: 107.146801
+            },
+            map: map,
+            title: 'Jl.Tugu Desa Sukamaju, Kec. Cianjur'
+        });
 
-            // Event listener for password visibility toggle
-            document.getElementById("togglePassword").addEventListener("click", togglePassword);
+        // Tambahkan kontrol pilihan tampilan peta
+        var mapTypeControlDiv = document.createElement('div');
+        var mapTypeControl = new google.maps.MapTypeControl();
 
-            // Check if there are values saved in localStorage for username and password
-            document.addEventListener('DOMContentLoaded', function() {
-                var savedUsername = localStorage.getItem('savedUsername');
-                var savedPassword = localStorage.getItem('savedPassword');
+        mapTypeControlDiv.appendChild(mapTypeControl.setMap(map));
 
-                // Insert saved values into input if they exist
-                if (savedUsername) {
-                    document.getElementById('username').value = savedUsername;
-                }
-                if (savedPassword) {
-                    document.getElementById('password').value = savedPassword;
-                }
-            });
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(mapTypeControlDiv);
 
-            // Save username and password values to localStorage when user changes them
-            document.getElementById('username').addEventListener('input', function() {
-                localStorage.setItem('savedUsername', this.value);
-            });
-            document.getElementById('password').addEventListener('input', function() {
-                localStorage.setItem('savedPassword', this.value);
-            });
+        // Tambahkan kontrol zoom
+        var zoomControlDiv = document.createElement('div');
+        var zoomControl = new google.maps.ZoomControl();
 
-            // Clear username and password values when user logs out or leaves the page
-            window.addEventListener('beforeunload', function() {
-                localStorage.removeItem('savedUsername');
-                localStorage.removeItem('savedPassword');
-            });
-            </script>
+        zoomControlDiv.appendChild(zoomControl.setMap(map));
 
-            <script>
-            function scrollAndPlayVideo(videoId) {
-                // Scroll ke bawah ke container video
-                const videoContainer = document.getElementById('video-container');
-                videoContainer.style.display = 'block'; // Tampilkan container video jika tersembunyi
-                videoContainer.scrollIntoView({
-                    behavior: 'smooth'
-                }); // Scrol ke bawah dengan efek halus
-
-                // Mulai pemutaran video
-                const videoFrame = document.getElementById('video-frame');
-                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            }
-
-            function closeVideo() {
-                // Hentikan pemutaran video
-                const videoFrame = document.getElementById('video-frame');
-                videoFrame.src = '';
-
-                // Sembunyikan container video
-                const videoContainer = document.getElementById('video-container');
-                videoContainer.style.display = 'none';
-            }
-            </script>
-
-            <!-- Load the Google Maps JavaScript API -->
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi-odF-Gt01kILpD8eq9dxlpqMwgLLRS4&callback=initMap"
-                async defer></script>
-
-
-            <!-- JavaScript untuk menampilkan peta dan marker -->
-            <script>
-            function initMap() {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 30,
-                    center: {
-                        lat: -6.838084,
-                        lng: 107.146801
-                    }
-                });
-
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat: -6.838084,
-                        lng: 107.146801
-                    },
-                    map: map,
-                    title: 'Jl.Tugu Desa Sukamaju, Kec. Cianjur'
-                });
-
-                // Tambahkan event listener untuk marker
-                google.maps.event.addListener(marker, 'click', function() {
-                    window.open('https://www.google.com/maps?q=-6.838084,107.146801',
-                        '_blank');
-                });
-            }
-            </script>
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(zoomControlDiv);
+    }
+    </script>
 
 </body>
 

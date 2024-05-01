@@ -22,6 +22,13 @@ if (isset($_GET['url'])) {
         case 'delete_pengaduan':
             include 'delete_pengaduan.php';
             break;
+            case 'manage_posts':
+                include 'manage_posts.php';
+                break;
+                case 'edit_posts':
+                    include 'edit_posts.php.php';
+                    break;
+        
     }
 } else {
 ?>

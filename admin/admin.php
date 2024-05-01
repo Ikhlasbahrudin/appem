@@ -190,6 +190,13 @@ if($_SESSION['level'] != "admin") {
             <div class="sidebar-heading">
                 Interface
             </div>
+            <!-- Sidebar - Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="manage_posts.php">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Posts</span>
+                </a>
+            </li>
 
             <!-- Nav Item - Charts -->
 
@@ -215,6 +222,7 @@ if($_SESSION['level'] != "admin") {
                             <a class="collapse-item" href="lihat_masyarakat.php">Data Masyarakat</a>
                             <a class="collapse-item" href="lihat_laporan.php">Data Laporan</a>
                             <a class="collapse-item" href="lihat_tanggapan.php">Data Tanggapan</a>
+
                         </div>
                     </div>
                 </li>
