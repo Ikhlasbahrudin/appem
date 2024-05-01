@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Mar 2024 pada 18.12
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Generation Time: May 01, 2024 at 06:25 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `masyarakat`
+-- Table structure for table `masyarakat`
 --
 
 CREATE TABLE `masyarakat` (
@@ -36,7 +36,7 @@ CREATE TABLE `masyarakat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `masyarakat`
+-- Dumping data for table `masyarakat`
 --
 
 INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `telp`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `telp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengaduan`
+-- Table structure for table `pengaduan`
 --
 
 CREATE TABLE `pengaduan` (
@@ -56,21 +56,14 @@ CREATE TABLE `pengaduan` (
   `nik` varchar(16) NOT NULL,
   `isi_laporan` text NOT NULL,
   `foto` varchar(255) NOT NULL,
-  `status` enum('0','proses','selesai','') NOT NULL
+  `status` enum('0','proses','selesai','') NOT NULL,
+  `lokasi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `pengaduan`
---
-
-INSERT INTO `pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `nik`, `isi_laporan`, `foto`, `status`) VALUES
-(65, '2024-03-29', '1234567890123', 'saya ining makan ', '6606f35fadad8_kebakaran2.jpeg', 'selesai'),
-(66, '2024-03-29', '1234567890123', 'ada kebakaran rumah', '6606f3a3952f2_kebakaran.jpeg', '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `petugas`
+-- Table structure for table `petugas`
 --
 
 CREATE TABLE `petugas` (
@@ -83,7 +76,7 @@ CREATE TABLE `petugas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `petugas`
+-- Dumping data for table `petugas`
 --
 
 INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `username`, `password`, `telp`, `level`) VALUES
@@ -95,7 +88,39 @@ INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `username`, `password`, `te
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tanggapan`
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `category` enum('sosial','pembangunan','kesehatan') NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `post_date` date NOT NULL,
+  `content` text NOT NULL,
+  `thumbnail` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `category`, `author`, `post_date`, `content`, `thumbnail`) VALUES
+(15, 'tes1', 'sosial', 'admin', '2024-05-01', 'https://youtube.com/watch?v=9K5AWkdr3aM', 'download.jpeg'),
+(16, 'tes2', 'sosial', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=nl19IyYYqX4&t=55s', '265857420_3037219659921484_2306792957529118305_n.jpg'),
+(17, 'interview profile unsur', 'sosial', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'f1JnaHVS_400x400.jpg'),
+(18, 'tess3', 'pembangunan', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'images.png'),
+(19, 'tess4', 'kesehatan', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'images.png'),
+(20, 'tess5', 'pembangunan', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'kebakaran.jpeg'),
+(21, 'tess6', 'pembangunan', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'img4.jpeg'),
+(22, 'tes7', 'sosial', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'istockphoto-1300845620-612x612.jpg'),
+(24, 'tes slider', 'sosial', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'pengambilan kendaraan.png'),
+(25, 'haiii', 'sosial', 'admin', '2024-05-01', 'https://www.youtube.com/watch?v=VmvqeFhY1K4', 'IMG20200307083430.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tanggapan`
 --
 
 CREATE TABLE `tanggapan` (
@@ -108,61 +133,66 @@ CREATE TABLE `tanggapan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tanggapan`
---
-
-INSERT INTO `tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tanggapan`, `foto`, `id_petugas`) VALUES
-(17, 65, '2024-03-29', 'kalu mau makan  sana ke dapur', '', 7);
-
---
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `masyarakat`
+-- Indexes for table `masyarakat`
 --
 ALTER TABLE `masyarakat`
   ADD PRIMARY KEY (`nik`);
 
 --
--- Indeks untuk tabel `pengaduan`
+-- Indexes for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
   ADD PRIMARY KEY (`id_pengaduan`);
 
 --
--- Indeks untuk tabel `petugas`
+-- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
   ADD PRIMARY KEY (`id_petugas`);
 
 --
--- Indeks untuk tabel `tanggapan`
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tanggapan`
 --
 ALTER TABLE `tanggapan`
   ADD PRIMARY KEY (`id_tanggapan`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `pengaduan`
+-- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT untuk tabel `petugas`
+-- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
   MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `tanggapan`
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
