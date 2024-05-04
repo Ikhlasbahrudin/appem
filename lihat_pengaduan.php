@@ -44,26 +44,20 @@ session_start();
                     <!-- Ganti 'logo.png' dengan jalur dan nama file logo Anda -->
                     <img src="logo/logo.png" alt="Logo" style="width: 100px; height: auto; border-radius: 10px;">
                 </div>
-
             </a>
-
             <hr>
             <hr>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="masyarakat.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <!-- Heading -->
             <div class="sidebar-heading">
                 Interface
@@ -71,21 +65,23 @@ session_start();
             <!-- Nav Item - tulis pengaduan -->
             <li class="nav-item">
                 <a class="nav-link tulis-pengaduan-link" href="tulis_pengaduan.php">
-                    <i class="fas fa-fw fa-edit"></i>
+                    <i class="fas fa-fw fa-pencil-alt"></i>
                     <span>Tulis Pengaduan</span>
                 </a>
             </li>
             <!-- Nav Item - lihat_pengaduan -->
             <li class="nav-item">
                 <a class="nav-link" href="lihat_pengaduan.php">
-                    <i class="fas fa-fw fa-eye"></i>
-                    <span>Lihat Pengaduan</span></a>
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Arsip Pengaduan</span>
+                </a>
             </li>
             <!-- Nav Item - keluar -->
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Keluar</span></a>
+                    <span>Keluar</span>
+                </a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -106,7 +102,6 @@ session_start();
                                 <h1 class="page-title">Aplikasi Pengaduan Masyarakat</h1>
                             </div>
                         </div>
-
                     </div>
                 </nav>
                 <!-- End of Topbar -->
@@ -131,49 +126,59 @@ session_start();
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                 require 'koneksi.php';
-                 // Periksa apakah variabel session 'nik' sudah diatur
-                 if (isset($_SESSION['nik'])) {
-                   $sql = mysqli_query($koneksi, "SELECT * FROM pengaduan where nik='$_SESSION[nik]'");
-                   while ($data = mysqli_fetch_array($sql)) {
-                     echo '<tr>';
-                     echo '<td>' . $data['id_pengaduan'] . '</td>';
-                     echo '<td>' . $data['tgl_pengaduan'] . '</td>';
-                     echo '<td>' . $data['nik'] . '</td>';
-                     echo '<td>' . $data['isi_laporan'] . '</td>';
-                  // Menampilkan foto sebagai gambar
-echo '<td><img src="foto/' . $data['foto'] . '" width="100" height="100"></td>';
+                                    <tbody>
+                                        <?php
+                                        require 'koneksi.php';
+                                        // Periksa apakah variabel session 'nik' sudah diatur
+                                        if (isset($_SESSION['nik'])) {
+                                            $sql = mysqli_query($koneksi, "SELECT * FROM pengaduan where nik='$_SESSION[nik]'");
+                                            while ($data = mysqli_fetch_array($sql)) {
+                                                echo '<tr>';
+                                                echo '<td>' . $data['id_pengaduan'] . '</td>';
+                                                echo '<td>' . $data['tgl_pengaduan'] . '</td>';
+                                                echo '<td>' . $data['nik'] . '</td>';
+                                                echo '<td>' . $data['isi_laporan'] . '</td>';
+                                                echo '<td><img src="foto/' . $data['foto'] . '" width="100" height="100"></td>';
+                                                // Menentukan kelas Bootstrap berdasarkan nilai status
+                                                $status_class = $data['status'] == 'Proses' ? 'text-warning' : '';
+                                                // Menampilkan status dengan gaya teks yang sesuai
+                                                echo '<td class="' . $status_class . '">' . $data['status'] . '</td>';
+                                                echo '<td>';
+                                        ?>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton_<?php echo $data['id_pengaduan']; ?>"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Pilih
+                                            </button>
+                                            <div class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton_<?php echo $data['id_pengaduan']; ?>">
+                                                <a class="dropdown-item"
+                                                    href="lihat_tanggapan.php?id=<?php echo $data['id_pengaduan']; ?>">
+                                                    <i class="fas fa-eye"></i> Lihat Tanggapan
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="detail_pengaduan.php?id=<?php echo $data['id_pengaduan']; ?>">
+                                                    <i class="fas fa-info-circle"></i> Detail
+                                                </a>
+                                                <a class="dropdown-item text-danger"
+                                                    href="hapus_pengaduan.php?id=<?php echo $data['id_pengaduan']; ?>"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus pengaduan ini?');">
+                                                    <i class="fas fa-trash-alt"></i> Hapus
+                                                </a>
+                                            </div>
+                                        </div>
 
-// Menentukan kelas Bootstrap berdasarkan nilai status
-$status_class = $data['status'] == 'Proses' ? 'text-warning' : '';
-
-// Menampilkan status dengan gaya teks yang sesuai
-echo '<td class="' . $status_class . '">' . $data['status'] . '</td>';
-
-echo '<td>';
-
-
-                   // Button group
-                      echo '<div class="btn-group">';
-                      if (!empty($data['id_pengaduan'])) {
-                        // Ganti bagian ini
-                      echo '<a href="detail_pengaduan.php?id=' . $data['id_pengaduan'] . '" class="btn btn-info btn-sm">';
-                      echo '<i class="fas fa-info"></i> Detail</a>';
-                      // Tambahkan sedikit jarak
-                      echo '<span>&nbsp;&nbsp;</span>'; // Tambahkan spasi di sini
-                      // Perbaiki bagian ini
-                      echo '<a href="lihat_tanggapan.php?id=' . $data['id_pengaduan'] . '" class="btn btn-primary btn-sm">';
-                      echo '<i class="fas fa-eye"></i> Lihat Tanggapan</a>';
-
-                      }
-                      echo '</div>';
-                    }
-                  } else {
-                    // Jika variabel session 'nik' tidak ada
-                    echo '<tr><td colspan="7">Belum ada pengaduan yang dilaporkan.</td></tr>';
-                  }
-                  ?>
+                                        <?php
+                                                echo '</td>';
+                                                echo '</tr>';
+                                            }
+                                        } else {
+                                            // Jika variabel session 'nik' tidak ada
+                                            echo '<tr><td colspan="7">Belum ada pengaduan yang dilaporkan.</td></tr>';
+                                        }
+                                        ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -204,7 +209,6 @@ echo '<td>';
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
     <script>
     function showLoading() {
         // Tambahkan loading
@@ -216,7 +220,6 @@ echo '<td>';
         loadingOverlay.style.height = '100%';
         loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
         loadingOverlay.style.zIndex = '9999';
-
         var loadingIcon = document.createElement('i');
         loadingIcon.classList.add('fas', 'fa-spinner', 'fa-spin');
         loadingIcon.style.position = 'absolute';
@@ -225,16 +228,13 @@ echo '<td>';
         loadingIcon.style.transform = 'translate(-50%, -50%)';
         loadingIcon.style.fontSize = '50px';
         loadingIcon.style.color = '#000';
-
         loadingOverlay.appendChild(loadingIcon);
         document.body.appendChild(loadingOverlay);
-
         // Tunda navigasi ke halaman baru
         setTimeout(function() {
             window.location.href = 'tulis_pengaduan.php';
         }, 1000); // Tunda selama 1 detik
     }
-
     document.addEventListener('DOMContentLoaded', function() {
         var tulisPengaduanLinks = document.querySelectorAll('.tulis-pengaduan-link');
         tulisPengaduanLinks.forEach(function(link) {
@@ -245,7 +245,6 @@ echo '<td>';
         });
     });
     </script>
-
 </body>
 
 </html>

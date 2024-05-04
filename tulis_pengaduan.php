@@ -17,16 +17,38 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Favicons -->
     <link href="logo/logo.png" rel="icon">
+
+    <style>
+    @media (max-width: 576px) {
+        .btn-text {
+            display: none;
+        }
+    }
+
+    @media (min-width: 577px) {
+        .btn-icon {
+            display: none;
+        }
+    }
+    </style>
 </head>
 
 <body id="page-top">
+
     <div class="card shadow">
         <div class="card-header">
-            Tulis Pengaduan
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Tulis Pengaduan</span>
+
+                <button type="button" class="btn btn-secondary cancel-link" onclick="location.href='masyarakat.php';">
+                    <i class="fas fa-fw fa-times"></i> Cancel
+                </button>
+            </div>
         </div>
+
         <div class="card-body">
             <form action="simpan_pengaduan.php" method="post" class="form-horizontal" enctype="multipart/form-data"
-                id="pengaduanForm">
+                id="pengaduanForm" onsubmit="return validateForm()">
                 <div class="form-group Cols-sm-6">
                     <label>Tanggal Pengaduan</label>
                     <input type="text" name="tgl_pengaduan" value="<?php echo date('d/m/Y');?>" class="form-control"
@@ -45,13 +67,61 @@
                 </div>
                 <div class="form-group Cols-sm-6">
                     <label>Tulis Laporan</label>
-                    <textarea class="form-control" rows="7" name="isi_laporan"></textarea>
+                    <textarea class="form-control" rows="7" name="isi_laporan" id="isi_laporan"></textarea>
                 </div>
                 <div class="form-group Cols-sm-6">
                     <label>Unggah Foto</label>
-                    <input type="file" name="foto" class="form-control">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile"
+                                aria-describedby="inputGroupFileAddon" name="foto" onchange="updateFileName(this)">
+                            <label class="custom-file-label" for="inputGroupFile">Pilih file</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon"><i
+                                    class="fas fa-upload"
+                                    onclick="document.getElementById('inputGroupFile').click();"></i></button>
+                        </div>
+                    </div>
                     <p style="color: blue">*Anda dapat mengunggah file gambar dengan tipe apa saja.</p>
                 </div>
+
+                <script>
+                function updateFileName(input) {
+                    var fileName = input.files[0].name;
+                    var label = input.parentElement.querySelector('.custom-file-label');
+                    if (fileName.length > 10) {
+                        label.innerHTML = '...' + fileName.substring(fileName.length - 10);
+                    } else {
+                        label.innerHTML = fileName;
+                    }
+                }
+
+                function validateForm() {
+                    var laporan = document.getElementById("isi_laporan").value;
+                    var foto = document.getElementById("inputGroupFile").value;
+                    var lat = document.getElementById("lat").value;
+                    var long = document.getElementById("long").value;
+
+                    if (laporan.trim() == '') {
+                        alert("Tulis laporan tidak boleh kosong");
+                        return false;
+                    }
+
+                    if (foto.trim() == '') {
+                        alert("Unggah foto tidak boleh kosong");
+                        return false;
+                    }
+
+                    if (lat.trim() == '' || long.trim() == '') {
+                        alert("Anda belum menambahkan lokasi. Klik tombol Tambah Lokasi untuk menambahkan lokasi.");
+                        return false;
+                    }
+
+                    return true;
+                }
+                </script>
+
                 <div class="form-group Cols-sm-6">
                     <label>Long</label>
                     <input type="text" name="long" id="long" class="form-control" readonly>
@@ -60,13 +130,33 @@
                     <label>Lat</label>
                     <input type="text" name="lat" id="lat" class="form-control" readonly>
                 </div>
-                <div class="form-group col-sm-6">
-                    <button type="button" class="btn btn-primary" onclick="getLocation()">Tambah Lokasi</button>
+                <!-- Tombol -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-warning btn-text" onclick="getLocation()">
+                            <i class="fas fa-fw fa-map-marker-alt"></i> Tambah Lokasi
+                        </button>
+                        <button type="submit" class="btn btn-success btn-text mr-2">
+                            <i class="fas fa-fw fa-save"></i> Simpan
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-text">
+                            <i class="fas fa-fw fa-eraser"></i> Hapus
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-warning btn-icon" onclick="getLocation()">
+                            <i class="fas fa-fw fa-map-marker-alt"></i>
+                        </button>
+                        <button type="submit" class="btn btn-success btn-icon mr-2">
+                            <i class="fas fa-fw fa-save"></i>
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-icon mr-2">
+                            <i class="fas fa-fw fa-eraser"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group col-sm-6">
-                    <input type="submit" value="Simpan" class="btn btn-primary">
-                    <input type="reset" value="Kosongkan" class="btn btn-warning">
-                </div>
+                <!-- End Tombol -->
+
             </form>
         </div>
     </div>

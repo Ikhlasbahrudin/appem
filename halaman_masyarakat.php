@@ -27,38 +27,52 @@
 
     if (isset($_GET['url'])) {
         $url = $_GET['url'];
-
+    
         switch ($url) {
             case 'tulis_pengaduan':
                 include 'tulis_pengaduan.php';
                 break;
-
+    
             case 'lihat_pengaduan':
                 include 'lihat_pengaduan.php';
                 break;
-
+    
             case 'detail_pengaduan':
                 include 'detail_pengaduan.php';
                 break;
-
+    
             case 'lihat_tanggapan':
                 include 'lihat_tanggapan.php';
                 break;
                 
-            case 'belum_diproses.php':
+            case 'belum_diproses':
                 include 'belum_diproses.php';
                 break;
-
-            case 'lihat_proses.php':
-                include 'lihat_proses.php';
+    
+            case 'lihat_proses':
+                include 'lihat_proses.php'; 
+                break;
+    
+            case 'proses_selesai':
+                include 'proses_selesai.php'; 
                 break;
 
-            case 'proses_selesai.php':
-                include 'proses_selesai.php';
+                case 'hapus_pengaduan':
+                    include 'hapus_pengaduan.php'; 
+                    break;
+                    case 'chat_server':
+                        include 'chat_server.php'; 
+                        break;
+
+    
+            default:
+                echo "Halaman tidak ditemukan";
                 break;
         }
     } else {
-        
+        // Tambahkan kode di sini jika URL tidak diberikan
+    
+    
         require 'koneksi.php'; // Perbaikan path require di sini
 
         // Ambil informasi dari session
@@ -109,14 +123,13 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-4">
-                <!-- Tampilkan pengaduan dengan status '0' -->
+            <div class="col-md-4 mb-4">
                 <div class="card border-left-info shadow h-100 py-2"
                     onclick="window.location.href='belum_diproses.php';">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <i class="fas fa-info-circle fa-2x text-info"></i>
+                                <i class="far fa-folder-open fa-2x text-info"></i>
                             </div>
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
@@ -130,7 +143,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <?php if ($cek_proses) : ?>
                 <!-- Tampilkan pengaduan dengan status 'proses' -->
                 <div class="card border-left-warning shadow h-100 py-2"
@@ -139,7 +152,6 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
                                 <i class="fas fa-hourglass-half fa-2x text-warning"></i>
-                                <!-- Mengganti ikon ke jam pasir -->
                             </div>
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
@@ -154,7 +166,7 @@
                 <?php endif; ?>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <?php if ($cek_selesai) : ?>
                 <!-- Tampilkan pengaduan dengan status 'selesai' -->
                 <div class="card border-left-success shadow h-100 py-2"
